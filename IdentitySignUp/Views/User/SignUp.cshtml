@@ -1,0 +1,31 @@
+﻿@model UserLog
+
+<form asp-action="SignUp" asp-controller="User" style="border:1px solid #ccc">
+    <div class="container">
+        <h1>Sign Up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
+
+
+        <label for="Name"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" asp-for="Email" required>
+
+        <label for="Name"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" asp-for="UserName" required>
+
+        <label for="Password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" asp-for="Password" required>
+
+        <label>
+            <input type="checkbox" checked="checked" style="margin-bottom:15px" asp-for="IsAdmin">Admin bolib royxatdan otish
+        </label>
+
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+        <div class="clearfix">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <button type="submit" class="signupbtn">Sign Up</button>
+        </div>
+    </div>
+</form>
+

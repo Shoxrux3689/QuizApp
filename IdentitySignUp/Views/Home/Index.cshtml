@@ -1,0 +1,60 @@
+﻿@using IdentitySignUp.Entities;
+@using Microsoft.AspNetCore.Identity;
+@model List<User>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    //<h1>@ViewBag.Username</h1>
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">UserId</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            List<IdentityUserRole<Guid>> roles = ViewBag.UserRoles;
+        }
+
+        @for (int i = 0; i < Model.Count; i++)
+        {
+
+            var user = Model[i];
+            if (roles.FirstOrDefault(role => user.Id == role.UserId) != null)
+            {
+                <tr>
+                    <th scope="row">@(i + 1)</th>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>Admin</td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <th scope="row">@(i + 1)</th>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>User</td>
+                </tr>    
+            }
+        }
+    </tbody>
+</table>

@@ -1,9 +1,8 @@
 ﻿using IdentitySignUp.Entities;
 
-namespace IdentitySignUp.Models
-{
-    public class UserSign : User
-    {
+namespace IdentitySignUp.Models;
 
-    }
+public class UserSign : User
+{
+
 }

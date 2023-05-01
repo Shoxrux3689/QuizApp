@@ -42,7 +42,6 @@ namespace IdentitySignUp.Controllers
             if (userLog.IsAdmin == true)
             {
                 await _roleManager.CreateAsync(new IdentityRole<Guid>("admin"));
-
                 await _userManager.AddToRoleAsync(user, "admin");
             }
 
@@ -64,9 +63,10 @@ namespace IdentitySignUp.Controllers
 
             var id = user.FindFirstValue(ClaimTypes.NameIdentifier);
             var name = user.FindFirstValue(ClaimTypes.Name);
-            var country = user.FindFirstValue(ClaimTypes.Email);
+            var email = user.FindFirstValue(ClaimTypes.Email);
 
-            return Ok(id + "        "  + name + country);
+            return Ok(id + "        "  + name + email);
+           // return View(user);
         }
 
         [HttpGet]
@@ -81,10 +81,12 @@ namespace IdentitySignUp.Controllers
         public async Task<IActionResult> SignIn(UserSign userSign)
         {
             //signinuser klass ochib uni userdan inhert qilib koraman, va userga tenglashtirib koraman
-            User user = userSign;
+            //User user = userSign;
+            
             var result = await _signInManager.PasswordSignInAsync(userName: userSign.UserName,
                 password: userSign.PasswordHash,
                 isPersistent: true, false);
+
             if (!result.Succeeded)
             {
                 return BadRequest(result.IsNotAllowed);
@@ -93,14 +95,49 @@ namespace IdentitySignUp.Controllers
             return RedirectToAction("Profile");
         }
 
+
+        [HttpGet]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> AddQuestion()
         {
-            var claim = HttpContext.User;
-            var userId = new User()
-            {
+            return View();
+        }
 
-            };
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> AddQuestion(Question question)
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> CheckNumber()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> CheckNumber(int checkNum, int endNum)
+        {
+            int count = 0;
+            for(int i = 0; i <= endNum; i++)
+            {
+                int a = i;
+
+                while (a > 0)
+                {
+                    if (a % 10 == checkNum)
+                    {
+                        count++;
+                    }
+                    a /= 10;
+                }
+            }
+            ViewBag.Count = count;
 
             return View();
         }

@@ -1,0 +1,26 @@
+﻿
+<form asp-action="CheckNumber" asp-controller="User" style="border:1px solid #ccc">
+    <div class="container">
+        <h1>Sign In</h1>
+        <p>berilgan qaysidir oraligida necha marta qatnashganligini topish</p>
+        <hr>
+
+        <label for="checkNum"><b>A</b></label>
+        <input type="text" placeholder="aniqlash kerak bolgan son" name="checkNum" required>
+
+        <label for="endNum"><b>B</b></label>
+        <input type="text" placeholder="Nechagacha" name="endNum" required>
+
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+        <div class="clearfix">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <button type="submit" class="signupbtn">Sign Up</button>
+        </div>
+    </div>
+</form>
+
+
+<h1>Natija: </h1>
+<h1>@ViewBag.Count</h1>
+

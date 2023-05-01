@@ -15,5 +15,8 @@ namespace IdentitySignUp.Entities
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
+
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Choice> Choices { get; set; }
     }
 }

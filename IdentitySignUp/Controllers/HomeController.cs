@@ -26,7 +26,7 @@ namespace IdentitySignUp.Controllers
 
             //ViewBag.Username = username;
             
-            List<User> users = db.Users.ToList<User>();
+            List<User> users = db.Users.ToList();
             ViewBag.UserRoles = db.UserRoles.ToList();
             //List<IdentityUserRole<Guid>> r = db.UserRoles.ToList();
 
